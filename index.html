@@ -18,12 +18,7 @@
     }
 
     a {
-      color: #38bdf8;
       text-decoration: none;
-    }
-
-    a:hover {
-      color: #0ea5e9;
     }
 
     header {
@@ -107,17 +102,15 @@
     .contact {
       display: flex;
       gap: 1.5rem;
-      flex-wrap: wrap;
       align-items: center;
       padding-top: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .contact a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
       color: #38bdf8;
+      font-size: 2rem; /* larger icons */
+      transition: color 0.2s;
     }
 
     .contact a:hover {
@@ -218,9 +211,9 @@
 <section>
   <h2>Contact</h2>
   <div class="contact">
-    <a href="mailto:silvaderyl@example.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
-    <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-    <a href="https://www.linkedin.com/in/darilsilva" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="mailto:silvaderyl@example.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://github.com/yourusername" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/darilsilva" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
   </div>
 </section>
 
