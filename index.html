@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daril Silva | Portfolio</title>
 
+  <!-- Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-h20CPHg0+PrfFvRAzz9+kVq1X/ScM8WJ5n7rX/avFkpD1O1ZV+GxUJojhV3u1Gv4k/3m2xPp2E1D2yX5f5u5CQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     body {
       margin: 0;
@@ -17,6 +20,10 @@
     a {
       color: #38bdf8;
       text-decoration: none;
+    }
+
+    a:hover {
+      color: #0ea5e9;
     }
 
     header {
@@ -39,7 +46,7 @@
     section {
       max-width: 900px;
       margin: auto;
-      padding: .5rem 2rem;
+      padding: 1rem 2rem;
     }
 
     h2 {
@@ -58,18 +65,57 @@
       font-size: 0.9rem;
     }
 
+    /* Projects Container (Horizontal) */
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
     .project {
       background: #020617;
-      padding: .5rem;
+      flex: 1 1 calc(33% - 1rem); /* 3 cards per row, adjust with gap */
+      padding: 1rem;
       border-radius: 10px;
-      margin-bottom: 1rem;
       border: 1px solid #1e293b;
+      box-sizing: border-box;
+      min-width: 250px; /* ensures responsiveness */
+      transition: transform 0.2s;
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
     }
 
     .project h3 {
-  margin-top: 0;       /* removes space above the heading */
-  margin-bottom: 0.5rem; /* small gap below the heading */
-}
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .project p {
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Contact icons */
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1rem;
+      color: #38bdf8;
+    }
+
+    .contact a:hover {
+      color: #0ea5e9;
+    }
 
     footer {
       text-align: center;
@@ -77,6 +123,20 @@
       color: #64748b;
       border-top: 1px solid #1e293b;
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .project {
+        flex: 1 1 calc(50% - 1rem); /* 2 cards per row */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .project {
+        flex: 1 1 100%; /* 1 card per row */
+      }
+    }
+
   </style>
 </head>
 
@@ -99,10 +159,10 @@
 
   <h2>Philosophy</h2>
   <p>
-   I believe in seeing the bigger picture and using mental models to guide decisions. 
+    I believe in seeing the bigger picture and using mental models to guide decisions. 
     Continuous learning is central to how I approach life — I seek new perspectives and challenge myself to think differently. 
-    I approach colleagues with empathy, seeing them as people first, which creates a better environment for collaboration. S
-    ystems thinking drives my problem-solving, combining knowledge from multiple fields to tackle challenges effectively. 
+    I approach colleagues with empathy, seeing them as people first, which creates a better environment for collaboration. 
+    Systems thinking drives my problem-solving, combining knowledge from multiple fields to tackle challenges effectively. 
     Above all, I treat thinking itself as a craft, constantly exploring ways to expand my understanding.
   </p>
 </section>
@@ -122,35 +182,37 @@
 
 <section>
   <h2>Projects</h2>
+  <div class="projects-container">
+    <div class="project">
+      <h3>Product Repair Process</h3>
+      <p>
+        Created and implemented an efficient on-site repair process for installed products, reducing labor costs by more than $150K.
+      </p>
+    </div>
 
-  <div class="project">
-    <h3>Product Repair Process</h3>
-    <p>
-     Created and implemented an efficient on-site repair process for installed products, reducing labor costs by more than $150K.
-    </p>
+    <div class="project">
+      <h3>Root Cause Analysis</h3>
+      <p>
+        Identified the root cause of inconsistent product performance using iterative testing and fishbone analysis, leading to a correction in the manufacturing process.
+      </p>
+    </div>
+
+    <div class="project">
+      <h3>VR Gaming Studio</h3>
+      <p>
+        Developed a VR game for Meta Quest using Unity and Blender in a team of four. Contributed to coding, game design, and marketing, leading to a successful launch in 2024.
+      </p>
+    </div>
   </div>
-
-  <div class="project">
-    <h3>Root Cause Analysis</h3>
-    <p>
-      Identified the root cause of inconsistent product performance using iterative testing and fishbone analysis, leading to a correction in the manufacturing process.
-    </p>
-  </div>
-
-  <div class="project">
-    <h3>VR Gaming Studio</h3>
-    <p>
-     Developed a VR game for Meta Quest using Unity and Blender in a team of four. Contributed to coding, game design, and marketing, leading to a successful launch in 2024.
-    </p>
-  </div>
-
 </section>
 
 <section>
   <h2>Contact</h2>
-  <p>Email: <a href="mailto:your.email@example.com">silvaderyl@example.com</a></p>
-  <p>GitHub: <a href="https://github.com/yourusername">github.com/silvaderyl</a></p>
-  <p>LinkedIn: <a href="#">linkedin.com/in/darilsilva</a></p>
+  <div class="contact">
+    <a href="mailto:silvaderyl@example.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
+    <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a href="https://www.linkedin.com/in/darilsilva" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+  </div>
 </section>
 
 <footer>
