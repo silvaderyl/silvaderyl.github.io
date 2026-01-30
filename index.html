@@ -6,71 +6,134 @@
   <title>Daril Silva | Portfolio</title>
 
   <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --border: #1e293b;
+      --accent: #38bdf8;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #0284c7;
+    }
+
+    * {
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
     }
 
     a {
-      color: #38bdf8;
+      color: var(--accent);
       text-decoration: none;
     }
 
     header {
-      padding: 4rem 2rem;
+      padding: 5rem 2rem 4rem;
       text-align: center;
-      background: linear-gradient(135deg, #0f172a, #020617);
+      background: linear-gradient(135deg, var(--bg), #020617);
+      position: relative;
     }
 
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.7rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
     }
 
     header p {
-      max-width: 600px;
+      max-width: 65ch;
       margin: auto;
-      color: #94a3b8;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
 
     section {
-      max-width: 900px;
+      max-width: 820px;
       margin: auto;
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
     }
 
     h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #1e293b;
+      font-size: 1.9rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border);
       padding-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      max-width: 65ch;
     }
 
     .skills span {
       display: inline-block;
-      background: #1e293b;
-      padding: 0.4rem 0.8rem;
-      margin: 0.3rem;
-      border-radius: 6px;
+      background: var(--bg-card);
+      padding: 0.45rem 0.9rem;
+      margin: 0.35rem;
+      border-radius: 8px;
       font-size: 0.9rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
     }
 
     .project {
-      background: #020617;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-      border: 1px solid #1e293b;
+      background: var(--bg-card);
+      padding: 2rem;
+      border-radius: 14px;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    .project:hover {
+      transform: translateY(-4px);
+    }
+
+    .project h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .thinking ul {
+      padding-left: 1.2rem;
+    }
+
+    .thinking li {
+      margin-bottom: 0.8rem;
+      max-width: 65ch;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
-      color: #64748b;
-      border-top: 1px solid #1e293b;
+      padding: 2.5rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
@@ -78,30 +141,34 @@
 <body>
 
 <header>
+  <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
   <h1>Daril Silva</h1>
   <p>
-    Product Design Engineer • Systems Thinker • Finance & Strategy Enthusiast
+    I design products, analyze systems, and think in trade-offs —
+    where engineering, finance, and strategy meet.
   </p>
 </header>
 
 <section>
   <h2>About Me</h2>
   <p>
-    I’m a design engineer with experience in product development, root cause analysis,
-    and systems thinking. I’m interested in leadership, strategy, and how finance
-    drives engineering decisions.
+    I’m a product design engineer with hands-on experience in real-world product
+    development, root cause analysis, and reliability-focused design.
+    I’m especially interested in how engineering decisions interact with cost,
+    risk, and long-term strategy.
   </p>
 </section>
 
 <section>
-  <h2>Skills</h2>
+  <h2>Capabilities</h2>
   <div class="skills">
-    <span>Creo CAD</span>
-    <span>Product Design</span>
+    <span>Product Design & CAD (Creo)</span>
     <span>Root Cause Analysis</span>
     <span>Systems Thinking</span>
+    <span>Reliability & Failure Analysis</span>
     <span>Technical Writing</span>
-    <span>Finance Basics</span>
+    <span>Engineering ↔ Cost Decisions</span>
     <span>Probability & Statistics</span>
   </div>
 </section>
@@ -111,32 +178,59 @@
 
   <div class="project">
     <h3>Product Redesign – Plumbing System</h3>
-    <p>
-      Improved reliability and manufacturability by applying structured
-      root-cause analysis and design optimization.
-    </p>
+    <p><strong>Problem:</strong> Field reliability issues impacting serviceability.</p>
+    <p><strong>Approach:</strong> Applied structured root cause analysis, evaluated design
+       constraints, and iterated with manufacturability in mind.</p>
+    <p><strong>Outcome:</strong> Improved reliability and reduced downstream risk.</p>
   </div>
 
   <div class="project">
-    <h3>Finance & Valuation Study</h3>
-    <p>
-      Self-driven learning project covering TVM, valuation basics,
-      and decision-making under uncertainty.
-    </p>
+    <h3>Finance & Decision-Making Study</h3>
+    <p><strong>Problem:</strong> Engineers often lack intuition for financial trade-offs.</p>
+    <p><strong>Approach:</strong> Self-study of time value of money, valuation basics,
+       and uncertainty-driven decisions.</p>
+    <p><strong>Outcome:</strong> Stronger decision framing beyond pure technical metrics.</p>
   </div>
 
+</section>
+
+<section class="thinking">
+  <h2>How I Think</h2>
+  <ul>
+    <li>I focus on first principles and constraints before tools.</li>
+    <li>I believe good engineering is about trade-offs, not perfection.</li>
+    <li>I care about decisions that balance reliability, cost, and long-term impact.</li>
+    <li>I enjoy problems where technical and business thinking intersect.</li>
+  </ul>
 </section>
 
 <section>
   <h2>Contact</h2>
-  <p>Email: <a href="mailto:your.email@example.com">silvaderyl@example.com</a></p>
-  <p>GitHub: <a href="https://github.com/yourusername">github.com/silvaderyl</a></p>
-  <p>LinkedIn: <a href="#">linkedin.com/in/darilsilva</a></p>
+  <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+  <p>GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+  <p>LinkedIn: <a href="#">linkedin.com/in/yourprofile</a></p>
 </section>
 
 <footer>
-  © 2026 Daril Silva • Built with HTML & CSS
+  © 2026 Daril Silva • Thoughtfully built
 </footer>
+
+<script>
+  const body = document.body;
+
+  function toggleTheme() {
+    body.classList.toggle("light");
+    localStorage.setItem(
+      "theme",
+      body.classList.contains("light") ? "light" : "dark"
+    );
+  }
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    body.classList.add("light");
+  }
+</script>
 
 </body>
 </html>
