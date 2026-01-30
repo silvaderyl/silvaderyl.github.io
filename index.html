@@ -6,23 +6,46 @@
   <title>Daril Silva | Portfolio</title>
 
   <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --border: #1e293b;
+      --accent: #38bdf8;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #0284c7;
+    }
+
+    * {
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
     a {
-      color: #38bdf8;
+      color: var(--accent);
       text-decoration: none;
     }
 
     header {
       padding: 4rem 2rem;
       text-align: center;
-      background: linear-gradient(135deg, #0f172a, #020617);
+      background: linear-gradient(135deg, var(--bg), #020617);
+      position: relative;
     }
 
     header h1 {
@@ -33,7 +56,19 @@
     header p {
       max-width: 600px;
       margin: auto;
-      color: #94a3b8;
+      color: var(--muted);
+    }
+
+    .toggle {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
 
     section {
@@ -45,32 +80,33 @@
     h2 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
-      border-bottom: 2px solid #1e293b;
+      border-bottom: 2px solid var(--border);
       padding-bottom: 0.5rem;
     }
 
     .skills span {
       display: inline-block;
-      background: #1e293b;
+      background: var(--bg-card);
       padding: 0.4rem 0.8rem;
       margin: 0.3rem;
       border-radius: 6px;
       font-size: 0.9rem;
+      border: 1px solid var(--border);
     }
 
     .project {
-      background: #020617;
+      background: var(--bg-card);
       padding: 1.5rem;
       border-radius: 10px;
       margin-bottom: 1.5rem;
-      border: 1px solid #1e293b;
+      border: 1px solid var(--border);
     }
 
     footer {
       text-align: center;
       padding: 2rem;
-      color: #64748b;
-      border-top: 1px solid #1e293b;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
@@ -78,6 +114,8 @@
 <body>
 
 <header>
+  <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+
   <h1>Daril Silva</h1>
   <p>
     Product Design Engineer • Systems Thinker • Finance & Strategy Enthusiast
@@ -112,7 +150,7 @@
   <div class="project">
     <h3>Product Redesign – Plumbing System</h3>
     <p>
-      Improved reliability and manufacturability by applying structured
+      Improved reliability and manufacturability using structured
       root-cause analysis and design optimization.
     </p>
   </div>
@@ -135,8 +173,25 @@
 </section>
 
 <footer>
-  © 2026 Daril Silva • Built with HTML & CSS
+  © 2026 Daril Silva • Built with HTML, CSS & JS
 </footer>
+
+<script>
+  const body = document.body;
+
+  function toggleTheme() {
+    body.classList.toggle("light");
+    localStorage.setItem("theme",
+      body.classList.contains("light") ? "light" : "dark"
+    );
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    body.classList.add("light");
+  }
+</script>
 
 </body>
 </html>
