@@ -2,305 +2,859 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daril Silva | Product Design Engineer</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daril Silva — Product Design Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #020617;
-      --panel: rgba(15, 23, 42, 0.75);
-      --border: #1e293b;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56,189,248,0.15);
+      --bg:      #0d1117;
+      --bg2:     #161b22;
+      --bg3:     #1c2330;
+      --border:  #30363d;
+      --border2: #21262d;
+      --text:    #e6edf3;
+      --text2:   #8b949e;
+      --text3:   #6e7681;
+      --accent:  #58a6ff;
+      --green:   #3fb950;
+      --gold:    #d29922;
+      --purple:  #bc8cff;
     }
 
-    * {
-      box-sizing: border-box;
+    body.light {
+      --bg:      #ffffff;
+      --bg2:     #f6f8fa;
+      --bg3:     #eaeef2;
+      --border:  #d0d7de;
+      --border2: #e8ecf0;
+      --text:    #1f2328;
+      --text2:   #656d76;
+      --text3:   #9198a1;
+      --accent:  #0969da;
+      --green:   #1a7f37;
+      --gold:    #9a6700;
+      --purple:  #8250df;
     }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(1200px 600px at 20% -10%, #0f172a, transparent),
-                  radial-gradient(800px 500px at 80% 10%, #020617, transparent),
-                  var(--bg);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    a {
-      color: inherit;
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: #111800;
+      border-bottom: 1px solid #2a3200;
+      padding: 0.45rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    body.light .ticker-wrap { background: #fff8e6; border-bottom-color: #e8d8a0; }
+
+    .ticker-inner { display: inline-block; animation: ticker 40s linear infinite; }
+
+    .ticker-inner span {
+      font-size: 0.72rem;
+      color: var(--gold);
+      padding: 0 2.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .ticker-inner span::before { content: '◆'; margin-right: 0.6rem; opacity: 0.5; }
+
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      height: 56px;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 2rem; }
+
+    .nav-logo {
+      font-family: 'Libre Bodoni', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       text-decoration: none;
     }
 
-    /* ---------- HEADER ---------- */
+    .nav-logo:hover { text-decoration: none; }
 
-    header {
-      padding: 5rem 2rem 3.5rem;
-      text-align: center;
+    .nav-badge {
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      text-transform: uppercase;
     }
 
-    header h1 {
-      font-size: clamp(2.6rem, 5vw, 3.2rem);
-      margin: 0 0 0.5rem;
-      background: linear-gradient(90deg, #e5e7eb, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
+    .nav-links { display: flex; gap: 0; list-style: none; }
+
+    .nav-links a {
+      display: block;
+      padding: 0 1rem;
+      height: 56px;
+      line-height: 56px;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text2);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
     }
 
-    header p {
-      max-width: 640px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); border-bottom-color: var(--accent); }
 
-    /* ---------- SECTIONS ---------- */
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
 
-    section {
-      max-width: 920px;
-      margin: 1.5rem auto;
-      padding: 1.8rem 2rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin: 0 0 0.8rem;
-      letter-spacing: -0.01em;
-    }
-
-    /* ---------- SKILLS ---------- */
-
-    .skills {
+    .nav-status {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: var(--green);
+      font-weight: 500;
     }
 
-    .skills span {
-      padding: 0.45rem 0.85rem;
-      background: #020617;
+    .status-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .nav-icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      color: var(--text2);
+      background: var(--bg3);
       border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: all 0.25s ease;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      padding: 0;
     }
 
-    .skills span:hover {
-      color: var(--text);
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
+    .nav-icon-btn:hover { color: var(--text); border-color: var(--accent); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 3.5rem 0 3rem;
     }
 
-    /* ---------- PROJECTS ---------- */
-
-    .projects {
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .project {
-      background: #020617;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem;
-      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(600px 200px at 0% 0%, var(--accent-soft), transparent);
-      opacity: 0;
-      transition: opacity 0.35s;
-    }
-
-    .project:hover::before {
-      opacity: 1;
-    }
-
-    .project:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-
-    .project h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.05rem;
-      display: flex;
-      gap: 0.5rem;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
       align-items: center;
     }
 
-    .project p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    /* ---------- CONTACT ---------- */
-
-    .contact {
+    .hero-eyebrow {
       display: flex;
-      justify-content: center;
-      gap: 2.2rem;
-      padding: 2.2rem 0 0.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s ease;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
     }
 
-    .contact.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .hero-eyebrow .sep { color: var(--border); }
+
+    .hero-name {
+      font-family: 'Libre Bodoni', serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1rem;
     }
 
-    .contact a {
-      font-size: 2.4rem;
-      color: var(--accent);
-      transition: transform 0.25s ease, color 0.25s ease;
+    .hero-name em { font-style: italic; color: var(--accent); }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text2);
+      max-width: 60ch;
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
     }
 
-    .contact a:hover {
-      transform: scale(1.18);
-      color: #7dd3fc;
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .htag {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.3rem 0.85rem;
+      border-radius: 2rem;
+      transition: border-color 0.2s, color 0.2s;
     }
 
-    /* ---------- FOOTER ---------- */
+    .htag:hover { border-color: var(--accent); color: var(--text); }
 
-    footer {
+    .hero-stats { display: flex; flex-direction: column; gap: 1rem; min-width: 175px; }
+
+    .stat-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
       text-align: center;
-      padding: 1.2rem 1rem 2rem;
-      color: var(--muted);
-      font-size: 0.85rem;
     }
 
-    /* ---------- RESPONSIVE ---------- */
+    .stat-num {
+      font-family: 'Libre Bodoni', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
 
-    @media (max-width: 600px) {
-      header {
-        padding-top: 4rem;
-      }
+    .stat-lbl {
+      font-size: 0.65rem;
+      color: var(--text3);
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    /* ── PAGE SHELL ── */
+    .page-body {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      border-right: 1px solid var(--border2);
+      padding: 1.75rem 1.25rem;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+    }
+
+    .sb-section { margin-bottom: 1.75rem; }
+
+    .sb-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border2);
+      margin-bottom: 0.6rem;
+    }
+
+    .sb-nav { list-style: none; }
+
+    .sb-nav a {
+      display: block;
+      padding: 0.38rem 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text2);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .sb-nav a:hover { background: var(--bg3); color: var(--text); }
+    .sb-nav a.active { background: rgba(88,166,255,0.1); color: var(--accent); }
+
+    body.light .sb-nav a.active { background: rgba(9,105,218,0.08); }
+
+    .sb-info { font-size: 0.72rem; color: var(--text3); line-height: 2.1; }
+    .sb-info .key { color: var(--text2); font-weight: 500; }
+
+    .sb-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      color: var(--text2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.45rem 0.75rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .sb-dl:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* ── MAIN ── */
+    .main-content { padding: 2rem; }
+
+    .doc-section { margin-bottom: 2.75rem; }
+
+    /* ── SECTION HEADER ── */
+    .sec-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .sec-icon { font-size: 1rem; }
+    .sec-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .sec-sub { font-size: 0.72rem; color: var(--text3); margin-left: auto; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .about-block { background: var(--bg2); padding: 1.75rem; }
+
+    .about-block h3 {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 0.85rem;
+    }
+
+    .about-block p { font-size: 0.88rem; color: var(--text2); line-height: 1.75; }
+    .about-block p + p { margin-top: 0.75rem; }
+
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin-top: 1rem;
+      font-style: italic;
+      color: var(--text);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    /* ── SKILLS TABLE ── */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .skills-table thead tr { background: var(--bg3); }
+
+    .skills-table thead th {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      padding: 0.75rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .skills-table tbody tr { border-bottom: 1px solid var(--border2); transition: background 0.15s; }
+    .skills-table tbody tr:last-child { border-bottom: none; }
+    .skills-table tbody tr:hover { background: var(--bg3); }
+    .skills-table td { padding: 0.85rem 1.25rem; font-size: 0.82rem; }
+    .skills-table td:first-child { font-weight: 600; color: var(--text); }
+    .skills-table td:last-child { color: var(--text2); }
+
+    /* ── PROJECTS ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border2);
+      padding: 1.5rem 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      transition: background 0.2s;
+    }
+
+    .project-card:last-child { border-bottom: none; }
+    .project-card:hover { background: var(--bg3); }
+
+    .project-num {
+      font-family: 'Libre Bodoni', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--border);
+      line-height: 1;
+      padding-top: 0.2rem;
+      min-width: 2rem;
+      transition: color 0.2s;
+    }
+
+    .project-card:hover .project-num { color: var(--accent); }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-sm {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    .badge-green  { background: rgba(63,185,80,0.15);   color: var(--green);  border: 1px solid rgba(63,185,80,0.3); }
+    .badge-blue   { background: rgba(88,166,255,0.15);  color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
+    .badge-purple { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+    .badge-gold   { background: rgba(210,153,34,0.15);  color: var(--gold);   border: 1px solid rgba(210,153,34,0.3); }
+
+    .project-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.7; max-width: 65ch; }
+
+    .project-meta { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; min-width: 110px; }
+
+    .meta-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text3);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .meta-impact { font-size: 0.75rem; color: var(--green); font-weight: 600; text-align: right; }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; }
+
+    .exp-card {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border2);
+      padding: 1.1rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+
+    .exp-card:last-child { border-bottom: none; }
+    .exp-card:hover { background: var(--bg3); }
+
+    .exp-company { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .exp-role { font-size: 0.8rem; color: var(--text2); }
+    .exp-date { font-size: 0.68rem; color: var(--text3); letter-spacing: 0.04em; white-space: nowrap; }
+
+    /* ── EDUCATION ── */
+    .edu-list { border: 1px solid var(--border2); border-radius: 8px; overflow: hidden; }
+
+    .edu-card {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border2);
+      padding: 1.1rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+
+    .edu-card:last-child { border-bottom: none; }
+    .edu-card:hover { background: var(--bg3); }
+
+    .edu-school { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .edu-degree { font-size: 0.78rem; color: var(--text2); }
+    .edu-date { font-size: 0.68rem; color: var(--text3); white-space: nowrap; }
+
+    /* ── AWARDS ── */
+    .cert-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .cert-card {
+      background: var(--bg2);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+
+    .cert-card:hover { background: var(--bg3); }
+    .cert-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .cert-name { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
+    .cert-body { font-size: 0.7rem; color: var(--text3); }
+
+    /* ── FOOTER ── */
+    .footer-bottom {
+      padding: 1.1rem 2rem;
+      border-top: 1px solid var(--border2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg2);
+    }
+
+    .footer-name { font-family: 'Libre Bodoni', serif; font-size: 1rem; color: var(--text2); }
+    .footer-copy { font-size: 0.7rem; color: var(--text3); }
+    .footer-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .page-body { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; }
+      .stat-card { flex: 1; min-width: 120px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: auto 1fr; }
+      .project-meta { display: none; }
+      nav .nav-links { display: none; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>Daril Silva</h1>
-  <p>
-    Product Design Engineer • Systems Thinker • Finance & Strategy Enthusiast
-  </p>
-</header>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+      <a class="nav-logo" href="#">Daril Silva <span class="nav-badge">Portfolio</span></a>
+      <ul class="nav-links">
+        <li><a href="#about" class="active">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Projects</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="nav-status"><span class="status-dot"></span> Available</div>
+      <a href="/cdn-cgi/l/email-protection#8cffe5e0faede8e9fef5e0ccebe1ede5e0a2efe3e1" class="nav-icon-btn" title="Email">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/darilsilva" target="_blank" class="nav-icon-btn" title="LinkedIn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <button class="nav-icon-btn" id="themeToggle" title="Toggle theme">
+        <svg id="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div><!-- nav-inner -->
+  </nav>
 
-<section>
-  <h2>About</h2>
-  <p>
-    I’m a design engineer experienced in product development, testing, and root cause analysis,
-    with a strong systems‑thinking mindset. I’m deeply interested in leadership, strategy,
-    and how financial reasoning shapes engineering decisions.
-  </p>
-</section>
-
-<section>
-  <h2>Philosophy</h2>
-  <p>
-    I believe good decisions come from understanding systems, incentives, and human behavior.
-    I treat thinking as a craft — refining mental models, learning across disciplines,
-    and approaching people with empathy. Clarity, curiosity, and continuous improvement
-    guide how I work and live.
-  </p>
-</section>
-
-<section>
-  <h2>Skills</h2>
-  <div class="skills">
-    <span>Creo CAD</span>
-    <span>Product Design</span>
-    <span>Root Cause Analysis</span>
-    <span>Systems Thinking</span>
-    <span>Technical Writing</span>
-    <span>Finance Fundamentals</span>
-    <span>Probability & Statistics</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-name">Daril <em>Silva</em></h1>
+        <p class="hero-desc">A design engineer who builds at the intersection of product, systems, and strategy. I bring structured thinking, financial reasoning, and hands-on engineering to every problem.</p>
+        <div class="hero-tags">
+          <span class="htag">🔩 Creo CAD</span>
+          <span class="htag">🔍 Root Cause Analysis</span>
+          <span class="htag">🧠 Systems Thinking</span>
+          <span class="htag">📐 Product Design</span>
+          <span class="htag">💰 Strategy & Finance</span>
+          <span class="htag">✍️ Technical Writing</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">$100K</div>
+          <div class="stat-lbl">Annual Savings</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-lbl">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Degrees & Diplomas</div>
+        </div>
+      </div>
+    </div><!-- hero-inner -->
   </div>
-</section>
 
-<section>
-  <h2>Projects</h2>
-  <div class="projects">
-    <div class="project">
-      <h3><i class="fas fa-wrench"></i> Product Repair Process</h3>
-      <p>
-        Designed and implemented an on‑site repair workflow for installed products,
-        reducing labor and operational costs by over $150K.
-      </p>
-    </div>
+  <!-- BODY -->
+  <div class="page-body">
 
-    <div class="project">
-      <h3><i class="fas fa-diagram-project"></i> Root Cause Analysis</h3>
-      <p>
-        Led structured RCA using iterative testing and fishbone analysis,
-        resulting in a manufacturing process correction and improved reliability.
-      </p>
-    </div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sb-section">
+        <div class="sb-label">Profile</div>
+        <div class="sb-info">
+          <span class="key">Location</span><br>
+          Ontario, Canada<br>
+          Abu Dhabi, UAE<br><br>
+          <span class="key">Focus</span><br>
+          Engineering + Strategy
+        </div>
+      </div>
 
-    <div class="project">
-      <h3><i class="fas fa-vr-cardboard"></i> VR Gaming Studio</h3>
-      <p>
-        Co‑developed and launched a VR game for Meta Quest using Unity and Blender,
-        contributing across coding, design, and go‑to‑market execution.
-      </p>
+      <div class="sb-section">
+        <div class="sb-label">Contact</div>
+        <div class="sb-info">
+          <a href="https://www.linkedin.com/in/darilsilva" target="_blank">LinkedIn</a><br>
+          <a href="/cdn-cgi/l/email-protection#8efde7e2f8efeaebfcf7e2cee9e3efe7e2a0ede1e3">Email</a>
+        </div>
+      </div>
+
+      <div class="sb-section">
+        <div class="sb-label">Resume</div>
+        <a href="Resume-2.pdf" download class="sb-dl">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- ABOUT -->
+      <div class="doc-section" id="about">
+        <div class="sec-header">
+          <span class="sec-icon">👤</span>
+          <span class="sec-title">About</span>
+          <span class="sec-sub">Background & Philosophy</span>
+        </div>
+        <div class="about-grid">
+          <div class="about-block">
+            <h3>Background</h3>
+            <p>I'm a product design engineer with hands-on experience in development, testing, and root cause analysis. My work lives at the intersection of how things are made, why they fail, and how teams can move smarter.</p>
+            <p>Beyond the bench and the CAD model, I'm drawn to strategy — asking not just <em>how</em> to build, but <em>why</em> it matters and whether it makes financial sense.</p>
+          </div>
+          <div class="about-block">
+            <h3>Philosophy</h3>
+            <p>I treat thinking as a craft. Mental models, first principles, and cross-disciplinary learning aren't extras — they're the method.</p>
+            <div class="pull-quote">
+              Good decisions come from understanding systems, incentives, and human behavior. Clarity, curiosity, and continuous improvement guide how I work and live.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="doc-section" id="skills">
+        <div class="sec-header">
+          <span class="sec-icon">⚙️</span>
+          <span class="sec-title">Skills & Disciplines</span>
+          <span class="sec-sub">4 categories</span>
+        </div>
+        <table class="skills-table">
+          <thead>
+            <tr><th>Category</th><th>Skills</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Design & Engineering</td><td>Creo · GD&T · Tolerance Stack-Up · DFM · 3D Printing (AM)</td></tr>
+            <tr><td>Validation & Processes</td><td>DVP&R · FMEA · Root Cause Analysis · Fixture Design · SOPs</td></tr>
+            <tr><td>Systems & PLM</td><td>Teamcenter · JDE · SAP · Smartsheet Automation · MS Office</td></tr>
+            <tr><td>Decision Making</td><td>Systems Thinking · Risk Assessment · Value Engineering</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MAJOR PROJECTS -->
+      <div class="doc-section" id="work">
+        <div class="sec-header">
+          <span class="sec-icon">📁</span>
+          <span class="sec-title">Key Projects</span>
+          <span class="sec-sub">3 highlights</span>
+        </div>
+        <div class="projects-list">
+
+          <div class="project-card" style="background: #0d1f0d; border-left: 3px solid var(--green);">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:0.3rem; min-width:2rem;">
+              <div class="project-num" style="color: var(--green);">01</div>
+              <div style="font-size:1.1rem; line-height:1;">⭐</div>
+            </div>
+            <div>
+              <div class="project-name">Flushometer Field Repair Process <span class="badge-sm badge-green">Product Engineering</span></div>
+              <div class="project-desc">Developed custom on-site repair procedures for installed flushometer products, eliminating costly full-unit replacements. Combined root cause analysis, fixture design, and work instructions to create a repeatable repair workflow that reduced rework and third-party service costs.</div>
+            </div>
+            <div class="project-meta">
+              <span class="meta-tag">RCA</span>
+              <span class="meta-impact">↓ $150K costs</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-num">02</div>
+            <div>
+              <div class="project-name">Root Cause Analysis — Manufacturing Defect <span class="badge-sm badge-blue">Analysis</span></div>
+              <div class="project-desc">Led a structured investigation using iterative testing and fishbone methodology to trace a persistent manufacturing defect to its origin. The findings drove a direct process correction and improved long-term product reliability.</div>
+            </div>
+            <div class="project-meta">
+              <span class="meta-tag">FMEA · Fishbone</span>
+              <span class="meta-impact">↑ Reliability</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-num">03</div>
+            <div>
+              <div class="project-name">VR Gaming Studio <span class="badge-sm badge-purple">Product</span></div>
+              <div class="project-desc">Co-developed and shipped a VR game for Meta Quest, contributing across Unity coding, 3D asset creation in Blender, and go-to-market strategy. A rare end-to-end project spanning hardware, software, and commercial execution.</div>
+            </div>
+            <div class="project-meta">
+              <span class="meta-tag">Unity · Blender</span>
+              <span class="meta-impact">Shipped ✓</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- OTHER PROJECTS -->
+      <div class="doc-section" id="other-projects">
+        <div class="sec-header">
+          <span class="sec-icon">🗂️</span>
+          <span class="sec-title">Other Projects</span>
+          <span class="sec-sub">4 entries</span>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1px; background:var(--border2); border:1px solid var(--border2); border-radius:8px; overflow:hidden;">
+
+          <div style="background:var(--bg2); padding:1rem 1.25rem; display:flex; flex-direction:column; gap:0.6rem; transition:background 0.15s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg2)'">
+            <div style="font-size:0.88rem; font-weight:600; color:var(--text);">Smartsheet Tracking System</div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge-sm badge-green">Process</span>
+              <span class="meta-tag">Smartsheet</span>
+            </div>
+            <div style="font-size:0.75rem; color:var(--green); font-weight:600;">On-Time ✓</div>
+          </div>
+
+          <div style="background:var(--bg2); padding:1rem 1.25rem; display:flex; flex-direction:column; gap:0.6rem; transition:background 0.15s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg2)'">
+            <div style="font-size:0.88rem; font-weight:600; color:var(--text);">Value Engineering & TCP</div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge-sm badge-purple">Strategy</span>
+              <span class="meta-tag">Cost Analysis</span>
+            </div>
+            <div style="font-size:0.75rem; color:var(--green); font-weight:600;">↓ $100K costs</div>
+          </div>
+
+          <div style="background:var(--bg2); padding:1rem 1.25rem; display:flex; flex-direction:column; gap:0.6rem; transition:background 0.15s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg2)'">
+            <div style="font-size:0.88rem; font-weight:600; color:var(--text);">Accessibility Shower Base</div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge-sm badge-blue">Product Design</span>
+              <span class="meta-tag">Creo · 3D Print</span>
+            </div>
+            <div style="font-size:0.75rem; color:var(--green); font-weight:600;">Released ✓</div>
+          </div>
+
+          <div style="background:var(--bg2); padding:1rem 1.25rem; display:flex; flex-direction:column; gap:0.6rem; transition:background 0.15s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg2)'">
+            <div style="font-size:0.88rem; font-weight:600; color:var(--text);">Water Closet Test Fixture</div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <span class="badge-sm badge-blue">Testing</span>
+              <span class="meta-tag">Compliance</span>
+            </div>
+            <div style="font-size:0.75rem; color:var(--green); font-weight:600;">Validated ✓</div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bottom">
+    <div style="max-width:1200px; margin:0 auto; padding:0 2rem; width:100%; display:flex; justify-content:space-between; align-items:center;">
+      <div class="footer-name">Daril Silva</div>
+      <div class="footer-copy">© 2026 · Built with intention</div>
+      <div class="footer-status"><span class="status-dot"></span> Available</div>
     </div>
   </div>
-</section>
 
-<div class="contact">
-  <a href="mailto:silvaderyl@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-  <a href="https://github.com/silvaderyl" title="GitHub"><i class="fab fa-github"></i></a>
-  <a href="https://www.linkedin.com/in/darilsilva" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-</div>
-
-<footer>
-  © 2026 Daril Silva • Designed & built with intention
-</footer>
-
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const btn  = document.getElementById('themeToggle');
+    const moon = document.getElementById('icon-moon');
+    const sun  = document.getElementById('icon-sun');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      moon.style.display = isLight ? 'none'  : 'block';
+      sun.style.display  = isLight ? 'block' : 'none';
     });
-  }, { threshold: 0.15 });
 
-  document.querySelectorAll('section, .contact').forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+    const secs  = document.querySelectorAll('[id]');
+    const navAs = document.querySelectorAll('.sb-nav a, .nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      secs.forEach(s =>
